@@ -1,38 +1,185 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+body {
+  /* background: linear-gradient(
+    90deg,
+    rgb(16, 255, 223) 0%,
+    rgba(100, 115, 255, 1) 100%
+  ); */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+  background: #2c3e50; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #4ca1af,
+    #2c3e50
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #4ca1af,
+    #2c3e50
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-repeat: no-repeat;
+}
+.content {
   display: flex;
   flex-direction: column;
+  justify-content: start;
+  width: 520px;
+  min-height: 600px;
+  /* background: #161a2b; */
+  background: #000;
+
+  text-align: center;
+  margin: 100px auto;
+  border-radius: 10px;
+  padding-bottom: 32px;
+}
+
+h1 {
+  margin: 32px 0;
+  color: #fff;
+  font-size: 34px;
+}
+.cover-form {
+  width: 90%;
+  margin: 0 auto;
+}
+.todo-input {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #0bb83c;
+  outline: none;
+  /* width: 320px; */
+  width: 79%;
+  background: transparent;
+  color: #fff;
+}
+
+.todo-input::placeholder {
+  color: #e2e2e2;
+}
+
+.todo-row {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* margin: 4px auto; */
+  color: #fff;
+  /* background: linear-gradient(90deg, rgb(9, 183, 35) 0%, rgb(17, 188, 46) 100%); */
+  background: linear-gradient(90deg, rgb(33 93 60) 0%, rgb(24 61 30) 100%);
+  padding: 18px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  font-size: 28px;
+  width: 75%;
+  padding-left: 60px;
+  word-break: break-all;
 }
 
-.App-link {
-  color: #61dafb;
+.todo-button {
+  padding: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+  color: #fff;
+  text-transform: capitalize;
+}
+.todo-button_submit {
+  padding: 10px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+    rgb(224, 11, 11) 0%,
+    rgb(234, 17, 17) 100%
+  );
+  color: #fff;
+  text-transform: capitalize;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todo-button_edit {
+  padding: 10px;
+  border: none;
+  height: 82px;
+  width: 52px;
+  cursor: pointer;
+  outline: none;
+  /* background: linear-gradient(90deg, rgb(39, 59, 236) 0%, rgb(22, 4, 52) 100%); */
+  background: linear-gradient(90deg, rgb(147 160 54) 0%, rgb(153 165 24) 100%);
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.item-list {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+.strike {
+  text-decoration: line-through;
+  color: #000;
+}
+input[type="checkbox"] {
+  display: none;
+}
+.custom-checkbox {
+  position: absolute;
+  top: 22px;
+  left: 10px;
+}
+
+.custom-checkbox .checkmark {
+  left: 0;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #222;
+  display: inline-block;
+  border-radius: 3px;
+  background: #222
+    url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png)
+    center/1250% no-repeat;
+  transition: background-size 0.2s ease;
+}
+
+.custom-checkbox input:checked + .checkmark {
+  background-size: 60%;
+  transition: background-size 0.25s cubic-bezier(0.7, 0, 0.18, 1.24);
+}
+
+.custom-checkbox input:checked + .todo-row {
+  background: linear-gradient(
+    90deg,
+    rgb(120, 214, 134) 0%,
+    rgb(139, 219, 153) 100%
+  );
+}
+
+/* .input-rename:active {
+    outline: none;
+  } */
+.input-rename:focus {
+  border: none;
+  outline: none;
+}
+
+.line {
+  height: 3px;
+  width: 100%;
+  background-color: yellow;
 }

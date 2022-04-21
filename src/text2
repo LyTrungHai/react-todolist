@@ -1,0 +1,72 @@
+// import "./App.css";
+import { Fragment, useState } from "react";
+
+function App() {
+  const [items, setItems] = useState(() => {
+    const storageJobs = JSON.parse(localStorage.getItem("JOBS"));
+    return storageJobs ?? [];
+  });
+  const [job, setJob] = useState("");
+
+  const handleDelete = (index) => {
+    setItems((prev) => {
+      prev = items.filter((job) => job !== items[index]);
+      const jsonJobs = JSON.stringify(prev);
+      localStorage.setItem("JOBS", jsonJobs);
+      return prev;
+    });
+  };
+
+  const handleSubmit = () => {
+    setItems((pre) => {
+      const newJobs = [...pre, job];
+      const jsonJobs = JSON.stringify(newJobs);
+      localStorage.setItem("JOBS", jsonJobs);
+      return newJobs;
+    });
+    setJob("");
+  };
+  console.log(job);
+  return (
+    <div className="App">
+      <div className="container">
+        <div className="row">
+          <div className="col-6">
+            <form onSubmit={handleSubmit}>
+              <input value={job} onChange={(e) => setJob(e.target.value)} />
+              <button type="submit">Add to list</button>
+
+              <ul>
+                {items.map((item, index) => (
+                  <Fragment key={index}>
+                    <li>{item}</li>
+                    <button
+                      onClick={() => handleDelete(index)}
+                      className="btn btn-danger"
+                    >
+                      Xóa
+                    </button>
+                    <button>Sửa</button>
+                  </Fragment>
+                ))}
+              </ul>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+// const handleClearAll = () => {
+//   setItems((prev) => {
+//     prev = items.splice(0, items.length);
+//     const jsonJobs = JSON.stringify(prev);
+//     localStorage.setItem("JOBS", jsonJobs);
+//     return prev;
+//   });
+// };
+
+//  <button onClick={handleClearAll}>clear all</button>;
